@@ -36,7 +36,7 @@ export default function HomePage(){
     }, [searchInput]);
 
     const fetchBlogs = async () => {
-        let url ="http://127.0.0.1:5000/api/blogs"
+        let url ="https://buggedpost-backend.onrender.com/api/blogs"
         if (searchInput) {
             url = url + `/${searchInput}`
         }

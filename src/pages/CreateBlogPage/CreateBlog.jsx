@@ -18,8 +18,9 @@ export default function CreateBlog(){
             blog_title,
             blog_content
         }
+        
 
-        const url = "http://127.0.0.1:5000/api/create_blogs"
+        const url = "https://buggedpost-backend.onrender.com/api/create_blogs"
         const options = {
             method: "POST",
             headers: {

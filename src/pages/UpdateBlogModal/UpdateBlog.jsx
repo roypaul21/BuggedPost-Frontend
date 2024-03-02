@@ -20,7 +20,7 @@ export default function UpdateBlog({updateBlogData = {}, updateCallback}) {
             blog_content
         }
 
-        const url = "/api/" + `update_blogs/${updateBlogData.blog_id}`
+        const url = "https://buggedpost-backend.onrender.com" + `/api/update_blogs/${updateBlogData.blog_id}`
         const options = {
             method: "PATCH",
             headers: {

@@ -12,7 +12,7 @@ export default function DeleteBlog({deleteBlogData = {}, updateCallback, closedM
             const options = {
                 method: "DELETE"
             }
-            const url = "/api/" + `delete_blogs/${deleteBlogData.blog_id}`
+            const url = "https://buggedpost-backend.onrender.com" + `/api/delete_blogs/${deleteBlogData.blog_id}`
             const response = await fetch(url, options)
             if (response.status == 201 || response.status == 200) {
                 const data = await response.json()
