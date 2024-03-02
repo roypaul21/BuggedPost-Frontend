@@ -4,10 +4,6 @@ import { motion } from "framer-motion"
 
 export default function UpdateBlog({updateBlogData = {}, updateCallback}) {
     
-    console.log(updateBlogData.blog_id)
-    console.log(updateBlogData.blog_title)
-    console.log(updateBlogData.blog_content)
-
     const [blog_title, setBlogTitle] = useState(updateBlogData.blog_title);
     const [blog_content, setBlogContent] = useState(updateBlogData.blog_content);
 
@@ -20,24 +16,31 @@ export default function UpdateBlog({updateBlogData = {}, updateCallback}) {
             blog_content
         }
 
-        const url = "https://buggedpost-backend.onrender.com" + `/api/update_blogs/${updateBlogData.blog_id}`
-        const options = {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
+        try {
+            const url = "https://buggedpost-backend.onrender.com" + `/api/update_blogs/${updateBlogData.blog_id}`
+            const options = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+
+            const response = await fetch(url, options)
+            if (response.status !== 201 && response.status !== 200) {
+                const data = await response.json()
+                alert(data.message)
+            } else {
+                const data = await response.json()
+                toast(data.message)
+                updateCallback()
+            }
+
+        } catch (error) {
+            alert(error)
         }
 
-        const response = await fetch(url, options)
-        if (response.status !== 201 && response.status !== 200) {
-            const data = await response.json()
-            alert(data.message)
-        } else {
-            const data = await response.json()
-            toast(data.message)
-            updateCallback()
-        }
+        
     }
     return(   
         <form className="create-blog-content" onSubmit={onSubmit}>
