@@ -18,28 +18,32 @@ export default function CreateBlog(){
             blog_title,
             blog_content
         }
+
+        const backend_url = import.meta.env.VITE_BACKEND_API_URL
+        const url = backend_url + "/api/create_blogs"
+        try {
+            const options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+    
+            const response = await fetch(url, options)
+            if (response.status !== 201 && response.status !== 200) {
+                const data = await response.json()
+                alert(data.message)
+            } else {
+                const data = await response.json()
+                toast(data.message)
+                modalOpened()
+    
+            }
+        } catch(error) {
+            alert(error)
+        }
         
-
-        const url = "https://buggedpost-backend.onrender.com/api/create_blogs"
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }
-
-        const response = await fetch(url, options)
-        console.log(response)
-        if (response.status !== 201 && response.status !== 200) {
-            const data = await response.json()
-            alert(data.message)
-        } else {
-            const data = await response.json()
-            toast(data.message)
-            modalOpened()
-
-        }
     }
 
     const modalOpened = () => {

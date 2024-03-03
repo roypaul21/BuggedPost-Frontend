@@ -3,16 +3,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import { motion as m } from "framer-motion"
 
 export default function DeleteBlog({deleteBlogData = {}, updateCallback, closedModal}) {
-    console.log(deleteBlogData.blog_id)
-    console.log(deleteBlogData.blog_title)
-
     const deleteBlog = async (e) => {
-        console.log(deleteBlogData.blog_id)
         try {
             const options = {
                 method: "DELETE"
             }
-            const url = "https://buggedpost-backend.onrender.com" + `/api/delete_blogs/${deleteBlogData.blog_id}`
+
+            const backend_url = import.meta.env.VITE_BACKEND_API_URL
+            const url = backend_url + `/api/delete_blogs/${deleteBlogData.blog_id}`
+
             const response = await fetch(url, options)
             if (response.status == 201 || response.status == 200) {
                 const data = await response.json()

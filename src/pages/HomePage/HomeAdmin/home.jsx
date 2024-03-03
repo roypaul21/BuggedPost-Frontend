@@ -34,20 +34,33 @@ export default function HomePage(){
     useEffect(() => {
         fetchBlogs()
     }, [searchInput]);
-
+    
     const fetchBlogs = async () => {
-        let url ="https://buggedpost-backend.onrender.com/api/blogs"
-        if (searchInput) {
-            url = url + `/${searchInput}`
-        }
-        isBlogExist()
-        const response = await fetch(url)
-        const data = await response.json()
-        if (data.blogs.length == 0) { 
-            console.log("Blog's Doesnt Exist")
+        const backend_url = import.meta.env.VITE_BACKEND_API_URL
+        let url = backend_url + "/api/blogs"
+        try{
+            if (searchInput) {
+                url = url + `/${searchInput}`
+            }
+            isBlogExist()
+            let response = await fetch(url,
+                {
+                    method: 'GET',
+                    mode: 'cors',
+                }
+            )
+            let data = await response.json()
+            if (data.blogs.length == 0) { 
+                console.log("Blog's Doesnt Exist")
+                isBlogNotExist()
+            }
+            setBlogs(data.blogs)
+
+        } catch(error) {
+            alert(error)
             isBlogNotExist()
         }
-        setBlogs(data.blogs)
+        
     } 
 
     //blogs
