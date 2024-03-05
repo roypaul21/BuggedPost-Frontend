@@ -5,30 +5,41 @@ import { lazy } from 'react';
 const router = createBrowserRouter([
     {
         path: "/",
-        Component: lazy(() => import('./pages/LandingPage'))
-    },
-    
-    {
-        path: "/",
-        Component: lazy(() => import('./components/AdminLayout/AdminLayout.jsx')),
+        Component: lazy(() => import('./components/Layout.jsx')),
         children: [
             {
                 path: "/",
-                Component: lazy(() => import('./components/AdminLayout/Navbar.jsx')),
+                Component: lazy(() => import('./components/AdminLayout/AdminLayout.jsx')),
+                children: [
+                        {
+                            path: "/home-admin",
+                            Component: lazy(() => import('./pages/HomePage/HomeAdmin'))
+                        },
+                        {
+                            path: "/create-blog",
+                            Component: lazy(() => import    ('./pages/CreateBlogPage'))
+                        },    
+                ]
+            },
+        
+            {
+                path: "/",
+                Component: lazy(() => import('./components/GuestLayout/GuestLayout.jsx')),
                 children: [
                     {
-                        path: "/home-admin",
-                        Component: lazy(() => import('./pages/HomePage/HomeAdmin'))
+                        path: "/landing",
+                        Component: lazy(() => import('./pages/LandingPage'))
                     },
                     {
-                        path: "/create-blog",
-                        Component: lazy(() => import    ('./pages/CreateBlogPage'))
+                        path: "/signup",
+                        Component: lazy(() => import('./pages/SignUpPage'))
                     },
                 ]
-            }
-
+                
+            },
         ]
     },
+   
 
     {
         path: "*",

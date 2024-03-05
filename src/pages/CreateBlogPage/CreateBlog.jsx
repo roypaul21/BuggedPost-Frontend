@@ -24,6 +24,7 @@ export default function CreateBlog(){
         try {
             const options = {
                 method: "POST",
+                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -43,7 +44,7 @@ export default function CreateBlog(){
         } catch(error) {
             alert(error)
         }
-        
+     
     }
 
     const modalOpened = () => {

@@ -1,10 +1,29 @@
 import {motion as m} from "framer-motion"
 import {container, item} from "./animation";
 import {Link} from "react-router-dom";
+import React, {useState, useEffect} from 'react';
+import LoginModal from "../SignInModal/LoginModal";
+import Layout from "../../components/Layout";
 
-export default function HeroSection() {
+export default function HeroSection({}) {
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+    const LoginOpenedModal = () => {
+        if (!isLoginOpen) setIsLoginOpen(true);
+    }
+
+    const LoginClosedModal = () => {
+        setIsLoginOpen(false);
+    }
+
     return(
         <section className="hero-section">
+            {isLoginOpen && <section className="login-modal"> 
+                    <div className="modal-content">
+                        <LoginModal loginModalClose={LoginClosedModal}/>
+                    </div>
+            </section>
+            }
           <m.div initial={{y:"100%"}} animate={{y:"0%"}} transition={{duration: 0.5, ease: "easeOut"}} exit={{opacity:1}}>
                 <m.div className="hero-section-header" variants={container} initial="hidden" animate="show">
                     <div className="hero-section-title">
@@ -19,13 +38,10 @@ export default function HeroSection() {
                     </div>
 
                     <div className="hero-section-btn">  
-                        <Link to="/home-admin">
-                            <m.button className="hero-btn" variants={item}>Visit Home</m.button>
-                        </Link>
-                    
                         <Link to="/">
-                            <m.button className="hero-btn" variants={item}>Get In Touch</m.button>
+                            <m.button className="hero-btn" variants={item}>Get in Touch</m.button>
                         </Link>
+                        <m.button className="hero-btn" variants={item} onClick={() => LoginOpenedModal()}>Get Started</m.button> 
                     </div>
                 </m.div>
             </m.div>

@@ -21,6 +21,7 @@ export default function UpdateBlog({updateBlogData = {}, updateCallback}) {
             const url = backend_url + `/api/update_blogs/${updateBlogData.blog_id}`
             const options = {
                 method: "PATCH",
+                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json"
                 },

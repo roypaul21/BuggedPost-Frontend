@@ -133,13 +133,224 @@ body {
 #root {
     background-color: #f5f5f5;
 }
+
+
+/*LOGIN MODAL SECTION*/
+
+.login-modal {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: none;
+    display: flex;
+    align-items: center;
+    background-color: rgb(0, 0 ,0 ,0.5);
+    justify-content: center;
+    overflow: hidden;
+}
+
+.login-modal > .modal-content{
+    z-index: 3;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: -5px 8px 10px 5px rgb(0, 0 ,0 ,0.1);
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.login-section > div > h1{
+    font-size: clamp(40px, 10vw, 60px);
+}
+
+.login-section > div > p{
+    font-size: clamp(12px, 1vw, 24px);
+}
+
+.login-section > div > p > #create-one {
+    color: #8A4A02;
+    text-decoration: none;
+}
+
+.login-section > div > p:nth-child(2){
+    font-size: clamp(12px, 1vw, 24px);
+    color: red;
+}
+
+.login-section > form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.login-section > form > div{
+    display: flex;
+    flex-direction: column; 
+}
+
+.login-section > form > div > input{
+    width: clamp(10rem, 50vw, 20rem);
+    height: 2.5rem;
+    border: 1px solid black;
+    text-indent: 7px;
+}
+
+.login-section > form > div:nth-child(3) {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.login-section > form > div > button{
+    margin-top: 5px;
+    width: clamp(5rem, 10.3vw, 10rem);
+    height: 2.5rem;
+    border: 1px solid black;
+    color: black;
+    background-color: transparent;
+}
+
+#login-btn {
+    margin-top: 5px;
+    width: clamp(5rem, 10.3vw, 10rem);
+    height: 2.5rem;
+    border: 1px solid black;
+    color: black;
+    background-color: transparent;
+}
+
+/*SIGN UP SECTION*/
+.signup-section {
+    width: 100%;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding:15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.signup-container > div > h1 {
+    font-size: clamp(30px, 10vw, 70px);
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+.signup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.signup-content > div {
+   display: flex;
+   flex-direction: column;
+}
+
+.signup-content > div > input{
+    width: clamp(10rem, 50vw, 30rem);
+    height: 3rem;
+    border: 1px solid black;
+    background-color: transparent;
+    text-indent: 7px;
+    border-radius: 1px;
+ }
+
+ 
+.signup-content > div > button{
+    width: clamp(10rem, 50vw, 30rem);
+    height: 3rem;
+    border: 1px solid black;
+    background-color: transparent;
+    text-indent: 7px;
+    border-radius: 1px;
+ }
+
+ .signup-modal {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: none;
+    display: flex;
+    align-items: center;
+    background-color: rgb(0, 0 ,0 ,0.5);
+    justify-content: center;
+    overflow: hidden;
+ }
+
+ .signup-modal > .modal-content{
+    z-index: 3;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: -5px 8px 10px 5px rgb(0, 0 ,0 ,0.1);
+}
+
+.signup-modal-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-modal-section > h1 {
+    font-size: 30px;
+}
+
+.signup-modal-section > div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.signup-modal-section > div > button {
+    width: 10rem;
+    height: 2.5rem;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#return-landing-btn{
+    width: 10rem;
+    height: 2.5rem;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
+ 
+
 /*HOME ADMIN SECTION*/
 .home-section {
     width: 100%;
     height: 100%;
     padding:15rem;
     display: flex;
-    flex-direction: column;
     background-color: #f5f5f5;
     align-items: center;
     justify-content: center;

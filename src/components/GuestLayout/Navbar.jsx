@@ -1,23 +1,20 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-import Logout from '../Logout';
+function GuestNavbar({loginModalOpened}) {
 
-
-function AdminNavbar() {  
-
-  const handleLogout = async () => {
-    await Logout();
-  };
+  const loginModalOpen = () => {
+    loginModalOpened();
+  }
 
   return (
     <>
     <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="light" fixed='top' id="navbar-bug">
       <Container>
         <Navbar.Brand>
-          <Link to="/home-admin">
+          <Link to="/landing">
             <img
                 src='./images/bb-icon.png'
                 width="100"
@@ -29,14 +26,14 @@ function AdminNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link className='nav-link' to="/home-admin">Home</Link>
-            <Link className='nav-link' to="/create-blog">Create Post</Link>
-            
+            <Link className='nav-link' to="#">About</Link>
+            <Link className='nav-link' to="#">Contact</Link>
+            <Link className='nav-link' to="/signup">Register</Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            <button className='nav-link' onClick={() => handleLogout()} >Logout</button>
+            <button  onClick={loginModalOpen} className='nav-link'>Login</button>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
@@ -47,4 +44,4 @@ function AdminNavbar() {
 
 
 
-export default AdminNavbar;
+export default GuestNavbar;

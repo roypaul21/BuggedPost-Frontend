@@ -18,7 +18,7 @@ export default function HomePage(){
     const [selectedBlog, setSelectedBlog] = useState(null);
     const [searchInput, setSearchInput] = useState("");
     const [isNotBlog, setIsNotBlog] = useState(false);
-
+    
     const handleSearchInputChange = (event) => {
         const inputValue = event.target.value;
         const sanitizedInputValue = inputValue.replace(/[^a-zA-Z0-9\s]/g, '');
@@ -37,7 +37,7 @@ export default function HomePage(){
     
     const fetchBlogs = async () => {
         const backend_url = import.meta.env.VITE_BACKEND_API_URL
-        let url = backend_url + "/api/blogs"
+        let url = backend_url + "/api/user_blogs"
         try{
             if (searchInput) {
                 url = url + `/${searchInput}`
@@ -47,9 +47,11 @@ export default function HomePage(){
                 {
                     method: 'GET',
                     mode: 'cors',
+                    credentials: 'include',
                 }
             )
             let data = await response.json()
+
             if (data.blogs.length == 0) { 
                 console.log("Blog's Doesnt Exist")
                 isBlogNotExist()
@@ -57,7 +59,6 @@ export default function HomePage(){
             setBlogs(data.blogs)
 
         } catch(error) {
-            alert(error)
             isBlogNotExist()
         }
         

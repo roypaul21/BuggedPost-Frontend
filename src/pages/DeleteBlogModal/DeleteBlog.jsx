@@ -6,7 +6,8 @@ export default function DeleteBlog({deleteBlogData = {}, updateCallback, closedM
     const deleteBlog = async (e) => {
         try {
             const options = {
-                method: "DELETE"
+                method: "DELETE",
+                credentials: 'include'
             }
 
             const backend_url = import.meta.env.VITE_BACKEND_API_URL
