@@ -45,6 +45,7 @@ export default function HeroSection({}) {
                     </div>
                 </m.div>
             </m.div>
+            
         </section>
     )
 }

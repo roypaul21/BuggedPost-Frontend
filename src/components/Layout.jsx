@@ -38,6 +38,7 @@ export default function Layout() {
         fetchCredentials();
     }, []); 
     
+    console.log(isCredentials)
 
     return (
         <main>
@@ -49,7 +50,7 @@ export default function Layout() {
                 <>
                     {isCredentials != null ? (
                         <>
-                            <Navigate to="/home-admin" />
+                            <Navigate to="/home" />
                             <Outlet />
                         </>
                     ) : (

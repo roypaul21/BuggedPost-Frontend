@@ -38,7 +38,7 @@ export default function LoginModal({loginModalClose}) {
                 const data = await response.json()
                 toast(data.message)
                 loginModalClose()
-                window.location.href = "/home-admin"
+                window.location.href = "/home"
             } 
             
 

@@ -1,21 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import UpdateBlog from '../../UpdateBlogModal/UpdateBlog';
 import { IoClose } from "react-icons/io5";
-import DeleteBlog from '../../DeleteBlogModal/DeleteBlog';
 import { ToastContainer, toast } from 'react-toastify';
 import { IoSearch } from "react-icons/io5";
-
 import { motion as m } from "framer-motion"
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 
+
 export default function HomePage(){
     const [blogs, setBlogs] = useState([]);
-    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [selectedBlog, setSelectedBlog] = useState(null);
     const [searchInput, setSearchInput] = useState("");
     const [isNotBlog, setIsNotBlog] = useState(false);
     
@@ -37,7 +32,7 @@ export default function HomePage(){
     
     const fetchBlogs = async () => {
         const backend_url = import.meta.env.VITE_BACKEND_API_URL
-        let url = backend_url + "/api/user_blogs"
+        let url = backend_url + "/api/blogs"
         try{
             if (searchInput) {
                 url = url + `/${searchInput}`
@@ -73,44 +68,6 @@ export default function HomePage(){
         setIsNotBlog(false)
     }
 
-    //update blog
-    const updateModalClosed = () => {
-        setIsUpdateModalOpen(false)
-    }
-
-    const updateModal = (blog) => {
-        setSelectedBlog(blog)
-        updateModalOpened()
-    }
-
-    const updateModalOpened = () => {
-        if (!isUpdateModalOpen) setIsUpdateModalOpen(true)
-    }
-
-    const onUpdate = () => {
-        updateModalClosed()
-        fetchBlogs()
-    }
-
-    //delete blog
-    const deleteModalClosed = () => {
-        setIsDeleteModalOpen(false)
-    }
-
-    const deleteModalOpened = () => {
-        if (!isDeleteModalOpen) setIsDeleteModalOpen(true)
-    }
-
-    const deleteModal = (blog) => {
-        setSelectedBlog(blog)
-        deleteModalOpened()
-    }
-
-    const onDelete = () => {
-        deleteModalClosed()
-        fetchBlogs()
-    }
-
     AOS.init({
         offset: 200,
         duration: 300,
@@ -125,22 +82,6 @@ export default function HomePage(){
     return(
         <section className="home-section">
             <ToastContainer />
-            {isDeleteModalOpen && <section className='delete-modal'>
-                <div className='modal-content' data-aos="zoom-out">
-                    <DeleteBlog deleteBlogData={selectedBlog} updateCallback={onDelete} closedModal={deleteModalClosed}/>
-                </div>
-             </section>
-            }
-            {isUpdateModalOpen && <section className='update-modal'>
-                <div className='modal-content' data-aos="zoom-out">
-                    <div className='modal-header'>
-                        <h1>UPDATE POST</h1>
-                        <div><IoClose onClick={updateModalClosed} className='update-icon'/></div>
-                    </div>
-                    <UpdateBlog updateBlogData={selectedBlog} updateCallback={onUpdate} />
-                </div>    
-              </section>
-            }
             <m.div className='home-section-container' initial={{y:"100%"}} animate={{y:"0%"}} transition={{duration: 0.75, ease: "easeOut"}} exit={{opacity:1}}>
                 <form className="search-form">
                     <div>
@@ -171,10 +112,9 @@ export default function HomePage(){
 
                 }
                 {blogs.map(blog => (
-                    <div className='mypost-section-content' key={blog.blog_id} data-aos="fade-up">
-                        <div className="delete-update-icon">
-                            <FaRegEdit onClick={() => updateModal(blog)} className='update-icon'/>
-                            <RiDeleteBin5Line onClick={() => deleteModal(blog)} className='update-icon'/>
+                    <div className='home-section-content' key={blog.blog_id} data-aos="fade-up">
+                        <div className="profile-name">
+                            <p>{blog.username}</p>
                         </div>
                         <div className='blog-contents'>
                             <div>

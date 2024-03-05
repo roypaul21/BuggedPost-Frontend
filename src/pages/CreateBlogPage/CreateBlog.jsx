@@ -76,7 +76,7 @@ export default function CreateBlog(){
                         <h1>POST CREATED SUCCESSFULLY</h1>
                     </div>
                     <div>
-                        <Link to="/home-admin">
+                        <Link to="/my-post">
                             <button>Return Home</button>
                         </Link>
                         <button onClick={modalClosed} >Cancel</button>

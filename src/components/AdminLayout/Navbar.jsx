@@ -17,7 +17,7 @@ function AdminNavbar() {
     <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="light" fixed='top' id="navbar-bug">
       <Container>
         <Navbar.Brand>
-          <Link to="/home-admin">
+          <Link to="/home">
             <img
                 src='./images/bb-icon.png'
                 width="100"
@@ -29,9 +29,9 @@ function AdminNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link className='nav-link' to="/home-admin">Home</Link>
-            <Link className='nav-link' to="/create-blog">Create Post</Link>
-            
+            <Link className='nav-link' to="/home">Home</Link>
+            <Link className='nav-link' to="/my-post">My Post</Link>
+            <Link className='nav-link' to="/create-blog">Create Post</Link>  
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
