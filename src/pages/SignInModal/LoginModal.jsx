@@ -15,8 +15,6 @@ export default function LoginModal({loginModalClose}) {
             username,
             userPassword,
         }
-        console.log(username)
-
         const backend_url = import.meta.env.VITE_BACKEND_API_URL
         const url = backend_url + "/api/login"
 
