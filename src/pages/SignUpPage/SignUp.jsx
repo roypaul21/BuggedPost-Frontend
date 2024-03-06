@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import LoginModal from "../SignInModal/LoginModal";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 export default function SignUp() {
     const [username, setUsername] = useState("");
@@ -63,18 +65,27 @@ export default function SignUp() {
         setIsLoginOpen(false);
     } 
 
+    AOS.init({
+        offset: 200,
+        easing: 'ease-out',
+        debounceDelay: 50,
+        throttleDelay: 99,
+        once: false, 
+        mirror: true
+    });
+
     
     return (
         <section className="signup-section">
             <ToastContainer />
             {isLoginOpen && <section className="login-modal"> 
-                    <div className="modal-content">
+                    <div className="modal-content" data-aos="zoom-in">
                         <LoginModal loginModalClose={LoginClosedModal}/>
                     </div>
             </section>
             }
             {isModalOpen && <section className="signup-modal">
-                <div className="modal-content">
+                <div className="modal-content" data-aos="zoom-in">
                     <div className="signup-modal-section">
                         <h1>User {username} Create Successfully</h1>
                         <div>
@@ -86,25 +97,37 @@ export default function SignUp() {
             </section>
             }
             <div className="signup-container">
-                <div><h1>SIGN UP</h1></div>
+                <div><h1 data-aos="slide-up" data-aos-duration="300" data-aos-delay="100" >SIGN UP</h1></div>
                 <form className="signup-content" onSubmit={onSubmit}>
                     <div>
-                        <label htmlFor="username-signup">Username</label>
-                        <input id="username-signup" type="text" value={username} 
-                                   onChange={(e) => setUsername(e.target.value)} required/>
+                        <div>
+                            <label htmlFor="username-signup" data-aos="slide-up" data-aos-duration="300" data-aos-delay="100">Username</label>
+                        </div>
+                        <div>
+                            <input id="username-signup" type="text" value={username} 
+                                    onChange={(e) => setUsername(e.target.value)} data-aos="slide-right" data-aos-delay="500" required/>
+                        </div>
                     </div>
                     <div>
-                        <label htmlFor="password-signup">Password</label>
-                        <input id="password-signup" type="password" value={userPassword} 
-                                   onChange={(e) => setUserPassword(e.target.value)} required/>
+                        <div>
+                            <label htmlFor="password-signup" data-aos="slide-up" data-aos-duration="300" data-aos-delay="100" >Password</label>
+                        </div>
+                        <div>
+                            <input id="password-signup" type="password" value={userPassword} 
+                                    onChange={(e) => setUserPassword(e.target.value)} data-aos="slide-right" data-aos-delay="500" required/>
+                        </div>
                     </div>
                     <div>
-                        <label htmlFor="confirm-password-signup">Confirm Password</label>
-                        <input id="confirm-password-signup" type="password" value={userConfirmPassword} 
-                                   onChange={(e) => setUserConfirmPassword(e.target.value)} required/>
+                        <div>
+                            <label htmlFor="confirm-password-signup"  data-aos="slide-up" data-aos-duration="300" data-aos-delay="100">Confirm Password</label>
+                        </div>
+                        <div>
+                            <input id="confirm-password-signup" type="password" value={userConfirmPassword} 
+                                    onChange={(e) => setUserConfirmPassword(e.target.value)} data-aos="slide-right" data-aos-delay="500" required/>
+                        </div>
                     </div>
                     <div>
-                        <button type="submit">Submit</button>
+                        <button type="submit" data-aos="slide-up" data-aos-delay="1000">Submit</button>
                     </div>
                 </form>
             </div>

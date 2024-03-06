@@ -75,7 +75,7 @@ export default function LoginModal({loginModalClose}) {
             </form>
            
             <div>
-                <p>No account yet? <a href="/signup" id="create-one">Create One</a></p>
+                <p>No account yet? <Link to="/signup" id="create-one">Create One</Link></p>
                 <p>{errorMsg}</p>
             </div>
             

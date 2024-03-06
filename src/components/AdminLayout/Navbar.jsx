@@ -1,16 +1,44 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import React, {useState, useEffect} from 'react';
 
 import Logout from '../Logout';
 
-
 function AdminNavbar() {  
+  const [username, setUsername] = useState("");
 
   const handleLogout = async () => {
     await Logout();
-  };
+  }
+
+  useEffect(() => {
+    fetchUsername()
+  }, [])
+
+  const fetchUsername = async () => {
+    const backend_url = import.meta.env.VITE_BACKEND_API_URL
+    const url = backend_url + "/api/username"
+    try{
+        const response = await fetch(url,
+            {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'include',
+            }
+        )
+
+        const data = await response.json()
+        setUsername(data.username)
+
+    } catch(error) {
+       console.log(error)
+    }
+    
+  } 
+
 
   return (
     <>
@@ -35,14 +63,16 @@ function AdminNavbar() {
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            <button className='nav-link' onClick={() => handleLogout()} >Logout</button>
-          </Navbar.Text>
+          <NavDropdown title={"Welcome " +  username} id="basic-nav-dropdown">
+              <NavDropdown.Item>
+                <button className='nav-link' onClick={() => handleLogout()} >Logout</button>
+              </NavDropdown.Item>
+          </NavDropdown>
         </Navbar.Collapse>
       </Container>
     </Navbar>
     </>
-  );
+  )
 }
 
 

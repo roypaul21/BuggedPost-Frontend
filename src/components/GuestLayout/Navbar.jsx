@@ -26,8 +26,7 @@ function GuestNavbar({loginModalOpened}) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link className='nav-link' to="#">About</Link>
-            <Link className='nav-link' to="#">Contact</Link>
+            <Link className='nav-link' to="/about">About</Link>
             <Link className='nav-link' to="/signup">Register</Link>
           </Nav>
         </Navbar.Collapse>

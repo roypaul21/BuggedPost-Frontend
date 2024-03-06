@@ -141,10 +141,11 @@ export default function HomePage(){
                 </div>    
               </section>
             }
+            <div className="home-section-header"><h1 data-aos="slide-down" data-aos-delay="800">My Post</h1></div>
             <m.div className='home-section-container' initial={{y:"100%"}} animate={{y:"0%"}} transition={{duration: 0.75, ease: "easeOut"}} exit={{opacity:1}}>
                 <form className="search-form">
                     <div>
-                        <div className="search-bar" data-aos="slide-right" data-aos-delay="800">
+                        <div className="search-bar" data-aos="slide-right" data-aos-delay="1000">
                             <IoSearch/>
                             <input placeholder="type search post" id="search-input" 
                                 value={searchInput} 

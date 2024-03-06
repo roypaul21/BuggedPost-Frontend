@@ -3,7 +3,8 @@ import {container, item} from "./animation";
 import {Link} from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 import LoginModal from "../SignInModal/LoginModal";
-import Layout from "../../components/Layout";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 export default function HeroSection({}) {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function HeroSection({}) {
     return(
         <section className="hero-section">
             {isLoginOpen && <section className="login-modal"> 
-                    <div className="modal-content">
+                    <div className="modal-content" data-aos="zoom-in">
                         <LoginModal loginModalClose={LoginClosedModal}/>
                     </div>
             </section>
@@ -38,8 +39,8 @@ export default function HeroSection({}) {
                     </div>
 
                     <div className="hero-section-btn">  
-                        <Link to="/">
-                            <m.button className="hero-btn" variants={item}>Get in Touch</m.button>
+                        <Link to="/about">
+                            <m.button className="hero-btn" variants={item}>About This</m.button>
                         </Link>
                         <m.button className="hero-btn" variants={item} onClick={() => LoginOpenedModal()}>Get Started</m.button> 
                     </div>
